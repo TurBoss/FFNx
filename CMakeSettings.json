@@ -7,8 +7,8 @@
             "inheritEnvironments": [
                 "msvc_x86"
             ],
-            "buildRoot": "${env.USERPROFILE}\\CMakeBuilds\\FF7_Vulkan\\build\\${name}",
-            "installRoot": "${env.USERPROFILE}\\CMakeBuilds\\FF7_Vulkan\\install\\${name}",
+            "buildRoot": "${projectDir}\\.dist\\build\\${name}",
+            "installRoot": "${projectDir}\\.dist\\install\\${name}",
             "cmakeCommandArgs": "",
             "buildCommandArgs": "-v",
             "ctestCommandArgs": ""
@@ -20,8 +20,8 @@
             "inheritEnvironments": [
                 "msvc_x86"
             ],
-            "buildRoot": "${env.USERPROFILE}\\CMakeBuilds\\FF7_Vulkan\\build\\${name}",
-            "installRoot": "${env.USERPROFILE}\\CMakeBuilds\\FF7_Vulkan\\install\\${name}",
+            "buildRoot": "${projectDir}\\.dist\\build\\${name}",
+            "installRoot": "${projectDir}\\.dist\\install\\${name}",
             "cmakeCommandArgs": "",
             "buildCommandArgs": "-v",
             "ctestCommandArgs": ""
@@ -33,8 +33,8 @@
             "inheritEnvironments": [
                 "msvc_x86"
             ],
-            "buildRoot": "${env.USERPROFILE}\\CMakeBuilds\\FF7_Vulkan\\build\\${name}",
-            "installRoot": "${env.USERPROFILE}\\CMakeBuilds\\FF7_Vulkan\\install\\${name}",
+            "buildRoot": "${projectDir}\\.dist\\build\\${name}",
+            "installRoot": "${projectDir}\\.dist\\install\\${name}",
             "cmakeCommandArgs": "",
             "buildCommandArgs": "-v",
             "ctestCommandArgs": ""
