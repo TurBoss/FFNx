@@ -820,7 +820,7 @@ int common_create_window(HINSTANCE hInstance, struct game_obj* game_object)
 	}
 	else
 	{
-		VRASS(game_object, window_title, "Final Fantasy VII");
+		VRASS(game_object, window_title, "FF7OR");
 	}
 
 	if (window_size_x == 0 || window_size_y == 0)
@@ -3050,13 +3050,14 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				HKEY ff7_regkey;
 				DWORD regsize = sizeof(DWORD);
 
-				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Square Soft, Inc.\Final Fantasy VII\1.00\MIDI)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
+				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Cloudiar Inc.\FF7OR\1.00\MIDI)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
 					if (external_music_volume < 0) RegQueryValueEx(ff7_regkey, "MusicVolume", NULL, NULL, (LPBYTE)&external_music_volume, &regsize);
 
-				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Square Soft, Inc.\Final Fantasy VII\1.00\Sound)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
+				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Cloudiar Inc.\FF7OR\1.00\Sound)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
 					if (external_sfx_volume < 0) RegQueryValueEx(ff7_regkey, "SFXVolume", NULL, NULL, (LPBYTE)&external_sfx_volume, &regsize);
 
-				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Square Soft, Inc.\Final Fantasy VII\1.00\FFNx)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
+				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Cloudiar Inc.\FF7OR\1.00\FFNx)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
+				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Cloudiar Inc.\FF7OR\1.00\FFNx)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
 				{
 					if (external_ambient_volume < 0) RegQueryValueEx(ff7_regkey, "AmbientVolume", NULL, NULL, (LPBYTE)&external_ambient_volume, &regsize);
 					if (ffmpeg_video_volume < 0) RegQueryValueEx(ff7_regkey, "MovieVolume", NULL, NULL, (LPBYTE)&ffmpeg_video_volume, &regsize);

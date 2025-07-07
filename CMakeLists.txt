@@ -412,7 +412,7 @@ add_custom_command(
 )
 
 # Copy FFNx release to FF7 1998 game path if installed
-cmake_host_system_information(RESULT FF7_1998_GAME_PATH QUERY WINDOWS_REGISTRY "HKLM/SOFTWARE/Square Soft, Inc./Final Fantasy VII" VALUE "AppPath" ERROR_VARIABLE FF7_KEY_QUERY_RES)
+cmake_host_system_information(RESULT FF7_1998_GAME_PATH QUERY WINDOWS_REGISTRY "HKLM/SOFTWARE/Cloudiar Inc./FF7OR" VALUE "AppPath" ERROR_VARIABLE FF7_KEY_QUERY_RES)
 if("${FF7_KEY_QUERY_RES}" STREQUAL "")
   cmake_path(CONVERT "${FF7_1998_GAME_PATH}" TO_CMAKE_PATH_LIST FF7_1998_GAME_PATH)
   # Ensure FFNx.toml exists so the copy on build does not error on fresh installs
@@ -443,7 +443,7 @@ if("${FF7_KEY_QUERY_RES}" STREQUAL "")
 endif()
 
 # Copy FFNx release to FF8 2000 game path if installed
-cmake_host_system_information(RESULT FF8_2000_GAME_PATH QUERY WINDOWS_REGISTRY "HKLM/SOFTWARE/Square Soft, Inc/FINAL FANTASY VIII/1.00" VALUE "AppPath" ERROR_VARIABLE FF8_KEY_QUERY_RES)
+cmake_host_system_information(RESULT FF8_2000_GAME_PATH QUERY WINDOWS_REGISTRY "HKLM/SOFTWARE/Cloudiar Inc./FF7OR/1.00" VALUE "AppPath" ERROR_VARIABLE FF8_KEY_QUERY_RES)
 if("${FF8_KEY_QUERY_RES}" STREQUAL "")
   cmake_path(CONVERT "${FF8_2000_GAME_PATH}" TO_CMAKE_PATH_LIST FF8_2000_GAME_PATH)
   # Ensure FFNx.toml exists so the copy on build does not error on fresh installs

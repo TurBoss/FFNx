@@ -57,6 +57,7 @@
     "steamworkssdk",
     "xxhash",
     "lz4",
+    "zlib",
     {
       "name": "cpuinfo",
       "default-features": false,

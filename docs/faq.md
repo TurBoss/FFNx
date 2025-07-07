@@ -45,8 +45,8 @@ In order to fix that behavior you need to:
 
 - Find the path where `ff7.exe` is installed ( for eg. `C:\Games\Final Fantasy VII` )
 - Open `RegEdit.exe` and go to this key:
-  - x32: `HKEY_LOCAL_MACHINE\SOFTWARE\Square Soft, Inc.\Final Fantasy VII`
-  - x64: `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Square Soft, Inc.\Final Fantasy VII`
+  - x32: `HKEY_LOCAL_MACHINE\SOFTWARE\Cloudiar Inc.\FF7OR`
+  - x64: `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Cloudiar Inc.\FF7OR`
 - Update the key named `MoviePath` value to `c:\games\final fantasy vii\Data\Movies\`
 - Copy the movie files from all your CDs into `c:\games\final fantasy vii\Data\Movies\`
 

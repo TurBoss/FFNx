@@ -520,7 +520,7 @@ speedhack_min = 1.0
 # Enable support for animated textures.
 # WARNING: This flag MAY degrade the gameplay performance. Enable at your own risk.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
-enable_animated_textures = false
+enable_animated_textures = true
 
 # Disable animated textures on the fields listed below.
 # This field can be a single field name, or an array of field names.

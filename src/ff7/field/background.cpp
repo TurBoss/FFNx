@@ -449,7 +449,7 @@ namespace ff7::field
         if (point->y < camera_range.top + 120)
             point->y = camera_range.top + 120;
 
-        if (enable_analogue_controls)
+        if ((enable_analogue_controls) & (1 == 0))
         {
             float accelCoeff = 0.1f / static_cast<float>(common_frame_multiplier);
             float maxScroll = 120;
@@ -956,7 +956,7 @@ namespace ff7::field
         }
         else if(*ff7_externals.field_bg_flag_CC15E4)
         {
-            if (enable_analogue_controls)
+            if ((enable_analogue_controls) & (1 == 0))
             {
                 vector2<float> bg_delta_position = {0.0f, 0.0f};
                 bool use_camdat_pan = true;
