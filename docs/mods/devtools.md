@@ -2,9 +2,9 @@
 
 If you're a modder and you want to test some of your changes faster than usually playing the game, this section may be of your interest.
 
-FFNx brings a whole new game changer tooling that will allow you to explore more of the game engine, while playing everytime you prefer.
+tnx3000 brings a whole new game changer tooling that will allow you to explore more of the game engine, while playing everytime you prefer.
 
-In order to use it, you must enable the relative flag on your [`FFNx.toml` config file](https://github.com/julianxhokaxhiu/FFNx/blob/master/misc/FFNx.toml#L259).
+In order to use it, you must enable the relative flag on your [`tnx3000.toml` config file](https://github.com/julianxhokaxhiu/tnx3000/blob/master/misc/tnx3000.toml#L259).
 
 ## Field Debug
 

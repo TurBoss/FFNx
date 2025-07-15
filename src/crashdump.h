@@ -7,13 +7,13 @@
 //    Copyright (C) 2020 John Pritchard                                     //
 //    Copyright (C) 2025 Julian Xhokaxhiu                                   //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
@@ -28,10 +28,10 @@
 
 #define STACK_MAX_NAME_LENGTH 256
 
-class FFNxStackWalker : public StackWalker
+class tnx3000StackWalker : public StackWalker
 {
 public:
-    FFNxStackWalker(bool muted = false) : StackWalker(), _baseAddress(0), _size(0), _muted(muted) {}
+    tnx3000StackWalker(bool muted = false) : StackWalker(), _baseAddress(0), _size(0), _muted(muted) {}
     DWORD64 getBaseAddress() const {
         return _baseAddress;
     }

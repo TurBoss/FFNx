@@ -1,6 +1,6 @@
-# FFNx documentation
+# tnx3000 documentation
 
-Welcome to the FFNx documentation!
+Welcome to the tnx3000 documentation!
 
 ## Common
 

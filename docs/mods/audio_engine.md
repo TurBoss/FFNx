@@ -1,18 +1,18 @@
 ## Audio Engine
 
-The new FFNx Audio Engine is completely configurable by you! Every audio layer can now have its own `config.toml` file, which through it you can customize the Audio Engine behavior when a track is going to be played.
+The new tnx3000 Audio Engine is completely configurable by you! Every audio layer can now have its own `config.toml` file, which through it you can customize the Audio Engine behavior when a track is going to be played.
 
-The `config.toml` MUST BE within the relative configured `external_*_path` entry in the [FFNx.toml](misc/FFNx.toml) file.
+The `config.toml` MUST BE within the relative configured `external_*_path` entry in the [tnx3000.toml](misc/tnx3000.toml) file.
 For example, for the SFX layer on default configuration, the file should be placed in `sfx/config.toml`.
 
-Feel free to check the example configuration included in each FFNx release.
+Feel free to check the example configuration included in each tnx3000 release.
 
 ### Audio Engine Layers
 
 The current supported Audio Engine layers are:
 
-- [SFX](misc/FFNx.SFX.toml): in-game audio sound effects ( menu cursor sound, battle sword slash sound, etc. )
-- [Music](misc/FFNx.music.toml): in-game audio music ( world theme, field theme, etc. )
+- [SFX](misc/tnx3000.SFX.toml): in-game audio sound effects ( menu cursor sound, battle sword slash sound, etc. )
+- [Music](misc/tnx3000.music.toml): in-game audio music ( world theme, field theme, etc. )
 - Voice: in-game audio voice acting ( dialog voice acting )
 - Ambient: in-game audio atmosphere effects
 

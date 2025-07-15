@@ -1,4 +1,4 @@
-# FFNx Audio Engine config file - Ambient layer
+# tnx3000 Audio Engine config file - SFX layer
 
 ### HOW TO: ###################################################################
 # Sections may be commented by default with an initial # character.
@@ -19,20 +19,20 @@
 # array. IDs MUST be numbers ONLY and MUST NOT contain any special character
 # like - or _. This flag MUST NOT be used in pair with 'shuffle'.
 # -----------------------------------------------------------------------------
-# fade_in: Fade in the track on play. The value MUST be a floating point
-# number and if 0.0 ( default ) then the track will NOT fade.
+# loop: Enable loop for the requested SFX ID
 # -----------------------------------------------------------------------------
-# fade_out: Fade out the track on stop. The value MUST be a floating point
-# number and if 0.0 ( default ) then the track will NOT fade.
-# -----------------------------------------------------------------------------
-# volume: Allow volume to be adjusted for a specific track.
+# skip: Enable this flag to skip playing the SFX ID and have silence instead.
+# PLEASE NOTE: this flag will "fake a match" on the engine, to ensure silent
+# playback so it will not be a "skip" in the sense of moving on to the
+# next match.
 ###############################################################################
 
-# Example
+# This entry will shuffle the SFX ID 1 ( menu cursor ) with the ID 2, 3 or 4.
+# Everytime the game engine will try to playback 1, one of the entries in the
+# array will be picked randomly.
 # -----------------------------------------------------------------------------
-#[field_123]
-#shuffle = [ "field_121", "field_122", "field_124" ]
-#sequential = [ "field_121", "field_122", "field_124" ]
-#fade_in = 0.0
-#fade_out = 0.0
-#volume = 50
+#[1]
+#shuffle = [ 2, 3, 4 ]
+#sequential = [ 2, 3, 4 ]
+#loop = true
+#skip = false

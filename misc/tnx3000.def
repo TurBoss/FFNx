@@ -7,20 +7,34 @@
 ;    Copyright (C) 2020 John Pritchard                                        ;
 ;    Copyright (C) 2025 Julian Xhokaxhiu                                      ;
 ;                                                                             ;
-;    This file is part of FFNx                                                ;
+;    This file is part of tnx3000                                                ;
 ;                                                                             ;
-;    FFNx is free software: you can redistribute it and/or modify             ;
+;    tnx3000 is free software: you can redistribute it and/or modify             ;
 ;    it under the terms of the GNU General Public License as published by     ;
 ;    the Free Software Foundation, either version 3 of the License            ;
 ;                                                                             ;
-;    FFNx is distributed in the hope that it will be useful,                  ;
+;    tnx3000 is distributed in the hope that it will be useful,                  ;
 ;    but WITHOUT ANY WARRANTY; without even the implied warranty of           ;
 ;    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            ;
 ;    GNU General Public License for more details.                             ;
 ;*****************************************************************************;
 
-LIBRARY AF4DN.P
+LIBRARY tnx3000.dll
 EXPORTS
+; Required by FF8 2000 injection. Ordinal 5 is required in order to inject as eax.dll
+EAXDirectSoundCreate @5
 ; Required for the Steam driver injection
+dotemuRegOpenKeyExA
+dotemuRegCloseKey
+dotemuRegFlushKey
+dotemuRegDeleteValueA
+dotemuRegSetValueExA
+dotemuRegQueryValueExA
 dotemuCreateFileA
-dotemuCreateMutexA
+dotemuGetDriveTypeA
+dotemuDeleteFileA
+; Required by FF7 DLL load injection
+new_dll_graphics_driver
+; tnx3000 APIs
+nxRegisterMouseListener
+nxRegisterKeyListener

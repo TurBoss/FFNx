@@ -7,13 +7,13 @@
 //    Copyright (C) 2020 John Pritchard                                     //
 //    Copyright (C) 2025 Julian Xhokaxhiu                                   //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
@@ -76,7 +76,7 @@ LONG WINAPI ExceptionHandler(EXCEPTION_POINTERS *ep)
 	}
 
 	ffnx_trace("*** Exception 0x%x, address 0x%x ***\n", ep->ExceptionRecord->ExceptionCode, ep->ExceptionRecord->ExceptionAddress);
-	FFNxStackWalker sw;
+	tnx3000StackWalker sw;
 	sw.ShowCallstack(
 		GetCurrentThread(),
 		ep->ContextRecord
@@ -166,7 +166,7 @@ LONG WINAPI ExceptionHandler(EXCEPTION_POINTERS *ep)
 	config.dwFlags = TDF_ENABLE_HYPERLINKS;
 	config.pszWindowTitle = L"Something went wrong";
 	config.pszMainInstruction = L"Game crashed :(";
-	config.pszContent = L"Something unexpected happened and unfortunately the game crashed.\n\nFeel free to visit <a href=\"https://github.com/julianxhokaxhiu/FFNx/blob/master/docs/faq.md\">this link</a> to know about further next steps you can take.";
+	config.pszContent = L"Something unexpected happened and unfortunately the game crashed.\n\nFeel free to visit <a href=\"https://github.com/julianxhokaxhiu/tnx3000/blob/master/docs/faq.md\">this link</a> to know about further next steps you can take.";
 	config.pszMainIcon = TD_ERROR_ICON;
 	config.pfCallback = TaskDialogCallbackProc;
 

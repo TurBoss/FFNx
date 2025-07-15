@@ -1,19 +1,19 @@
-![License](https://img.shields.io/github/license/julianxhokaxhiu/FFNx) ![Overall Downloads](https://img.shields.io/github/downloads/julianxhokaxhiu/FFNx/total?label=Overall%20Downloads) ![Latest Stable Downloads](https://img.shields.io/github/downloads/julianxhokaxhiu/FFNx/latest/total?label=Latest%20Stable%20Downloads&sort=semver) ![Latest Canary Downloads](https://img.shields.io/github/downloads/julianxhokaxhiu/FFNx/canary/total?label=Latest%20Canary%20Downloads) ![GitHub Actions Workflow Status](https://github.com/julianxhokaxhiu/FFNx/actions/workflows/main-1.22.0.yml/badge.svg?branch=master)
+![License](https://img.shields.io/github/license/julianxhokaxhiu/tnx3000) ![Overall Downloads](https://img.shields.io/github/downloads/julianxhokaxhiu/tnx3000/total?label=Overall%20Downloads) ![Latest Stable Downloads](https://img.shields.io/github/downloads/julianxhokaxhiu/tnx3000/latest/total?label=Latest%20Stable%20Downloads&sort=semver) ![Latest Canary Downloads](https://img.shields.io/github/downloads/julianxhokaxhiu/tnx3000/canary/total?label=Latest%20Canary%20Downloads) ![GitHub Actions Workflow Status](https://github.com/julianxhokaxhiu/tnx3000/actions/workflows/main-1.22.0.yml/badge.svg?branch=master)
 
 <div align="center">
-  <img src="https://github.com/julianxhokaxhiu/FFNx/blob/master/.logo/logo_nobg.png" alt="">
+  <img src="https://github.com/julianxhokaxhiu/tnx3000/blob/master/.logo/logo_nobg.png" alt="">
   <br><strong><small>Kudos to <a href="https://www.instagram.com/aryaaiedail/">Cinzia Cancedda (aryaaiedail)</a></small></strong>
 </div>
 
-# FFNx
+# tnx3000
 
 Next generation modding platform for Final Fantasy VII and Final Fantasy VIII (with native Steam 2013 release support)
 
 ## Introduction
 
-FFNx is a continuing evolution of the [FF7_OpenGL](https://github.com/Aali132/ff7_opengl) driver, [made by Aali](http://forums.qhimm.com/index.php?topic=14922.0).
+tnx3000 is a continuing evolution of the [FF7_OpenGL](https://github.com/Aali132/ff7_opengl) driver, [made by Aali](http://forums.qhimm.com/index.php?topic=14922.0).
 
-FFNx today in a nutshell:
+tnx3000 today in a nutshell:
 
 - Uses an easy, drag-n-drop installation experience, see [How to Install](docs/how_to_install.md)
 - Comes built-in with 7th Heaven v2.3 and higher
@@ -27,7 +27,7 @@ FFNx today in a nutshell:
 
 ## The Team
 
-FFNx is developed by a core team, currently composed of:
+tnx3000 is developed by a core team, currently composed of:
 
 - [Julian Xhokaxhiu](https://github.com/julianxhokaxhiu) (TrueOdin, 🇪🇸 Spain)
 - [Tang-Tang Zhou](https://github.com/tangtang95) (vertex2995, 🇮🇹 Italy)
@@ -49,7 +49,7 @@ We are always open for contributions via PRs, and in case you want to join the c
 - Up to 16x antialiasing support
 - 5.1/7.1 audio output support
 - Steam support; no game converter required
-- Steam savegame preservation (you no longer lose saves created while FFNx is active)
+- Steam savegame preservation (you no longer lose saves created while tnx3000 is active)
 - XInput controller support (Xbox 360 and compatible) with D-Pad working out-of-the-box
 - Native speedhack support
 - External music loading to replace original MIDIs
@@ -74,7 +74,7 @@ We are always open for contributions via PRs, and in case you want to join the c
 - Support for external ambient audio effects
 - Support for external movie audio files (allows multiple videos to share the same audio)
 - Support for external movie voice acting (dedicated audio layer only for voice acting on top of movies)
-- Steam achievements can be unlocked while playing within FFNx
+- Steam achievements can be unlocked while playing within tnx3000
 - Real-time light engine - You can now feel the game visually like never before
 - Real-time camera control in battles
 - Analogue controls using the full axis of your left analog stick
@@ -94,10 +94,10 @@ We are always open for contributions via PRs, and in case you want to join the c
 
 - Game rendering inspection through [RenderDoc](https://renderdoc.org/)
 - [DDS Texture support](https://wiki.beyondskyrim.org/wiki/Arcane_University:DDS_Data_Format) up to BC7 format, with PNG support as fallback
-- Support for configurable external textures path using [mod_path](misc/FFNx.toml#L100)
-- Support for an override layer of the data directory using [override_path](misc/FFNx.toml#L116)
+- Support for configurable external textures path using [mod_path](misc/tnx3000.toml#L100)
+- Support for an override layer of the data directory using [override_path](misc/tnx3000.toml#L116)
 - Support for MINIPSF audio files using the emulated PSX/PS2 AKAO Engine
-- Support for [Hext](https://forums.qhimm.com/index.php?topic=13574.0) patching files inside of the [hext_patching_path](misc/FFNx.toml#L113)
+- Support for [Hext](https://forums.qhimm.com/index.php?topic=13574.0) patching files inside of the [hext_patching_path](misc/tnx3000.toml#L113)
 - Debug in-game engine data through [imgui](https://github.com/ocornut/imgui) integration
 
 ## Documentation
@@ -114,7 +114,7 @@ For a more in-depth documentation feel free to visit the [docs/](docs/) folder.
 
 ## Tech Stack
 
-If you're curious to know, FFNx makes use of:
+If you're curious to know, tnx3000 makes use of:
 
 - C++ code base
 - Latest MSVC available on [Visual Studio 2022 Community Edition](https://visualstudio.microsoft.com/vs/features/cplusplus/)
@@ -152,9 +152,9 @@ Once the project is built you can find the output in this path: `.build/bin`
 
 > **Please note:**
 >
-> FFNx uses vcpkg as a package manager to resolve dependencies. Failing to follow these steps will result in build errors.
+> tnx3000 uses vcpkg as a package manager to resolve dependencies. Failing to follow these steps will result in build errors.
 
-0. Clone this repository using the `--recursive` flag, eg. `git clone --recursive https://github.com/julianxhokaxhiu/FFNx.git`
+0. Clone this repository using the `--recursive` flag, eg. `git clone --recursive https://github.com/julianxhokaxhiu/tnx3000.git`
 
 ### NuGet
 
@@ -175,7 +175,7 @@ $ nuget setApiKey YOUR_GITHUB_PAT -Source "https://nuget.pkg.github.com/julianxh
 > **Please note:**
 >
 > By default Visual Studio will pick the **x86-Release** build configuration, but you can choose any other profile available.
-> FFNx uses vcpkg as a package manager to resolve dependencies. Failing to follow these steps will result in build errors.
+> tnx3000 uses vcpkg as a package manager to resolve dependencies. Failing to follow these steps will result in build errors.
 
 0. Download the the latest [Visual Studio Community](https://visualstudio.microsoft.com/vs/community/) installer
 1. Run the installer and import this [.vsconfig](.vsconfig) file in the installer to pick the components required to build this project
@@ -202,8 +202,8 @@ $ nuget setApiKey YOUR_GITHUB_PAT -Source "https://nuget.pkg.github.com/julianxh
 0. **REQUIRED!** Follow up the steps to install Visual Studio, which will also install the MSVC toolchain
 1. **REQUIRED!** Have [Neovim](https://neovim.io/) installed with [clangd](https://clangd.llvm.org/) as LSP
 2. Install the extension `Clang Power Tools` in [Visual Studio Community](https://visualstudio.microsoft.com/vs/community/)
-3. Open the solution `FFNx.sln` under the `.build` directory with **Visual Studio Community** (**sln** file is generated by the build process)
-4. Right-click on **FFNx** solution (under the **Solution Explorer**) then click on **Clang Power Tools** -> **Export Compilation Database**
+3. Open the solution `tnx3000.sln` under the `.build` directory with **Visual Studio Community** (**sln** file is generated by the build process)
+4. Right-click on **tnx3000** solution (under the **Solution Explorer**) then click on **Clang Power Tools** -> **Export Compilation Database**
 5. Copy the `compile_commands.json` generated file into the root of the repository
 6. Open **Neovim** and enjoy!
 
@@ -225,7 +225,7 @@ Also on terminal it might not auto detect the kernel32_lib, so pass it with `-DC
 
 ## Support
 
-FFNx offers multiple support channels, pick the one you prefer
+tnx3000 offers multiple support channels, pick the one you prefer
 
 ### Forums
 
@@ -234,23 +234,23 @@ FFNx offers multiple support channels, pick the one you prefer
 
 ### Discord
 
-- Qhimm FFNx-FF7 (Final Fantasy VII only): https://discord.gg/N6M6pKS
-- Qhimm FFNx-FF8 (Final Fantasy VIII only): https://discord.gg/u6M7DnY
-- Tsunamods FFNx: https://discord.gg/Urq67Uz (remember to hit the Red Chocobo reaction!)
+- Qhimm tnx3000-FF7 (Final Fantasy VII only): https://discord.gg/N6M6pKS
+- Qhimm tnx3000-FF8 (Final Fantasy VIII only): https://discord.gg/u6M7DnY
+- Tsunamods tnx3000: https://discord.gg/Urq67Uz (remember to hit the Red Chocobo reaction!)
 
 ### Github
 
-- Issues: https://github.com/julianxhokaxhiu/FFNx/issues
+- Issues: https://github.com/julianxhokaxhiu/tnx3000/issues
 
 ## Credits
 
 This project could have not been a reality if those people would have not worked on FF7 and FF8 with their deep passion and knowledge.
-FFNx makes use also of their work, and I will never be enough grateful to those people. The order is purely Alphabetical.
+tnx3000 makes use also of their work, and I will never be enough grateful to those people. The order is purely Alphabetical.
 
 These people are:
 
 - [Aali](http://forums.qhimm.com/index.php?action=profile;u=2862):
-  - for the original Driver code FFNx is based on.
+  - for the original Driver code tnx3000 is based on.
 - [Chrysalis](http://forums.qhimm.com/index.php?action=profile;u=674):
   - for the battle fullscreen hext patch
   - for the menu cursor vertical centering in menu
@@ -259,47 +259,47 @@ These people are:
   - for the real-time camera control in battles
   - for the analogue controls in FF7
 - [DLPB](https://forums.qhimm.com/index.php?action=profile;u=6439):
-  - for original Hext concept and specification that FFNx implemented as well
-  - for the field vertical centering hext patch, which FFNx provides a default patch for
+  - for original Hext concept and specification that tnx3000 implemented as well
+  - for the field vertical centering hext patch, which tnx3000 provides a default patch for
   - for the Soft-Reset original concept
   - for the no battle original concept
 - [dziugo](http://forums.qhimm.com/index.php?action=profile;u=1660):
   - for the original FMV skip concept
 - [ficedula](http://forums.qhimm.com/index.php?action=profile;u=68):
-  - for 7h 1.x which FFNx provides support for
+  - for 7h 1.x which tnx3000 provides support for
 - [Iros](https://forums.qhimm.com/index.php?action=profile;u=21785):
-  - for 7h 1.x which FFNx provides support for
+  - for 7h 1.x which tnx3000 provides support for
 - [JWP](http://forums.qhimm.com/index.php?action=profile;u=3772):
-  - for imgui integration within FFNx
+  - for imgui integration within tnx3000
 - [Kranmer](http://forums.qhimm.com/index.php?action=profile;u=4909)
   - for PHS save everywhere Hext patch
   - for the no battle original concept
 - [Maki](http://forums.qhimm.com/index.php?action=profile;u=23937):
-  - for FF8 UV Hext Patch in the world map, which FFNx provides a default patch for
-  - for the help in getting the first iterations of FFNx running on FF8 2000/2013 release
+  - for FF8 UV Hext Patch in the world map, which tnx3000 provides a default patch for
+  - for the help in getting the first iterations of tnx3000 running on FF8 2000/2013 release
 - [myst6re](http://forums.qhimm.com/index.php?action=profile;u=4778):
   - for the great tools like Makou Reactor, Deling and many others he did which helped a lot in improving FF8 while working on the code
-  - for the great help in the code implementing the MINIPSF emulation layer being present inside FFNx
-  - for the heavy testing and lifting of a lot of bugs being catched in FFNx, for FF8
+  - for the great help in the code implementing the MINIPSF emulation layer being present inside tnx3000
+  - for the heavy testing and lifting of a lot of bugs being catched in tnx3000, for FF8
   - for the Steam savegame logic in the manifest.xml for FF8
   - for the real-time SFX volume change for FF7
 - [quantumpencil](http://forums.qhimm.com/index.php?action=profile;u=23810) and [Nax](https://github.com/nax):
-  - for the original CMake files FFNx has based its work upon
+  - for the original CMake files tnx3000 has based its work upon
   - for all the help in getting some logics wired up in the game engine and a lot of hex addresses I would never been able to figure out myself
 - [Satsuki](http://forums.qhimm.com/index.php?action=profile;u=24647):
-  - for the heavy testing and lifting of a lot of bugs being catched in FFNx, for FF7
-  - for the field vertical centering hext patch, which FFNx provides a default patch for
+  - for the heavy testing and lifting of a lot of bugs being catched in tnx3000, for FF7
+  - for the field vertical centering hext patch, which tnx3000 provides a default patch for
   - for a lot of hex addresses I would have never been able to figure out myself otherwise
-  - for the original Speedhack concept and help in getting it natively into FFNx
+  - for the original Speedhack concept and help in getting it natively into tnx3000
 - [Sebanisu](http://forums.qhimm.com/index.php?action=profile;u=22866):
-  - for the help in getting the first iterations of FFNx running on FF8 2000/2013 release
-  - for the heavy testing and lifting of a lot of bugs being catched in FFNx, for FF8
+  - for the help in getting the first iterations of tnx3000 running on FF8 2000/2013 release
+  - for the heavy testing and lifting of a lot of bugs being catched in tnx3000, for FF8
 - [sithlord48](http://forums.qhimm.com/index.php?action=profile;u=6501):
   - for the Steam savegame logic in the manifest.xml for FF7
 - [TurBoss](https://github.com/TurBoss):
-  - for 7h 1.x source code release and FFNx enablement
+  - for 7h 1.x source code release and tnx3000 enablement
 - [unab0mb](https://forums.qhimm.com/index.php?action=profile;u=31071):
-  - for the official integration of FFNx within 7thHeaven 2.3+
+  - for the official integration of tnx3000 within 7thHeaven 2.3+
 - [tangtang95](https://github.com/tangtang95)
   - for the 60FPS support in FF7
   - for the Steam achievements in FF7
@@ -315,9 +315,9 @@ I'm sure I forgot many others. In case you feel you're missing here, feel free t
 
 ## License
 
-FFNx is released under GPLv3 license. You can get a copy of the license here: [COPYING.txt](COPYING.txt)
+tnx3000 is released under GPLv3 license. You can get a copy of the license here: [COPYING.txt](COPYING.txt)
 
-If you paid for FFNx, remember to ask for a refund from the person who sold you a copy. Also make sure you get a copy of the source code (if it was provided as binary only).
+If you paid for tnx3000, remember to ask for a refund from the person who sold you a copy. Also make sure you get a copy of the source code (if it was provided as binary only).
 
 If the person who gave you this copy refuses to give you the source code, report it here: https://www.gnu.org/licenses/gpl-violation.html
 

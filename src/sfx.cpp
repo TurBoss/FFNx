@@ -7,13 +7,13 @@
 //    Copyright (C) 2020 John Pritchard                                     //
 //    Copyright (C) 2025 Julian Xhokaxhiu                                   //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
@@ -545,7 +545,7 @@ void sfx_menu_force_channel_5_volume(uint32_t volume, uint32_t channel)
 		ff7_sfx_set_volume_on_channel(volume, channel);
 	else
 		common_externals.set_sfx_volume_on_channel(volume, channel);
-	// Added by FFNx
+	// Added by tnx3000
 	sfx_remember_volumes();
 }
 
@@ -573,7 +573,7 @@ void sfx_update_volume(int modifier)
 
 void sfx_menu_play_sound_down(uint32_t id)
 {
-	// Added by FFNx
+	// Added by tnx3000
 	sfx_update_volume(-1);
 
 	// Original call (cursor sound)
@@ -585,7 +585,7 @@ void sfx_menu_play_sound_down(uint32_t id)
 
 void sfx_menu_play_sound_up(uint32_t id)
 {
-	// Added by FFNx
+	// Added by tnx3000
 	sfx_update_volume(1);
 
 	// Original call (cursor sound)
@@ -623,7 +623,7 @@ int sfx_play_battle_specific(IDirectSoundBuffer* buffer, uint32_t flags)
 		return 0;
 	}
 
-	// Added by FFNx: set buffer volume according to master_sfx_volume
+	// Added by tnx3000: set buffer volume according to master_sfx_volume
 	unsigned char volume = 127 * (*common_externals.master_sfx_volume) / 100;
 
 	buffer->SetVolume(common_externals.dsound_volume_table[volume]);
@@ -642,7 +642,7 @@ int sfx_play_battle_specific(IDirectSoundBuffer* buffer, uint32_t flags)
 
 uint32_t sfx_fix_omnislash_sound_loading(int sound_id, int dsound_buffer)
 {
-	// Added by FFNx: Load sound 0x188
+	// Added by tnx3000: Load sound 0x188
 	((uint32_t(*)(int, int))common_externals.sfx_load)(0x188, dsound_buffer);
 
 	// Original call (load sound 0x285)

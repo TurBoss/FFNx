@@ -11,7 +11,7 @@ You can try the following steps to fix ( not 100% guarantee but worth a try ):
 1. Download the latest AMD Drivers https://www.amd.com/en/support
 2. Install the drivers and remember to pick the option **Restore settings to Factory default** while installing
 3. When opening the AMD Control Panel for the first time, remember to choose the **Standard** profile.
-4. Set `renderer_backend = 4` on the [FFNx.toml](https://github.com/julianxhokaxhiu/FFNx/blob/master/misc/FFNx.toml#L20) config file.
+4. Set `renderer_backend = 4` on the [tnx3000.toml](https://github.com/julianxhokaxhiu/tnx3000/blob/master/misc/tnx3000.toml#L20) config file.
 
 After doing those steps, you should be able to play normally without any visible visual artifact.
 
@@ -19,23 +19,23 @@ After doing those steps, you should be able to play normally without any visible
 
 ### Game crashed, now what?
 
-Don't panic. FFNx creates an emergency save for you automatically, located next to your own `ff7.exe` file, located in `saves\crash.ff7`. You can rename this file to for eg. `save00.ff7` and load the first slot on the new game screen.
+Don't panic. tnx3000 creates an emergency save for you automatically, located next to your own `ff7.exe` file, located in `saves\crash.ff7`. You can rename this file to for eg. `save00.ff7` and load the first slot on the new game screen.
 
 BE AWARE that this is an emergency save and not everything might have been saved. **Use at your own risk.**
 
 #### If you ARE NOT using 7th Heaven / any third party mod pack
 
-You may open an issue here: https://github.com/julianxhokaxhiu/FFNx/issues
+You may open an issue here: https://github.com/julianxhokaxhiu/tnx3000/issues
 
 Remember to include:
-- the `FFNx.log` file you got immediately after the crash ( if you run the game again, it will be overwritten and precious information to understand the issue will be lost forever )
+- the `tnx3000.log` file you got immediately after the crash ( if you run the game again, it will be overwritten and precious information to understand the issue will be lost forever )
 - the `crash.ff7` file you can find under `saves\` directory
 - a description of the issue and how to replicate it
 - a proof ( picture or video ) that shows the intended issue
 
 #### If you ARE using 7th Heaven / any third party mod pack
 
-Please approach relative Mod Authors through the support links that you can find here: https://github.com/julianxhokaxhiu/FFNx#support
+Please approach relative Mod Authors through the support links that you can find here: https://github.com/julianxhokaxhiu/tnx3000#support
 
 DO NOT attempt to open an issue in this repository. It will be closed immediately without further explainations.
 
@@ -56,10 +56,10 @@ You should now be able to play vanilla movies as well as the one distributed via
 
 ### Game crashed, now what?
 
-You may open an issue here: https://github.com/julianxhokaxhiu/FFNx/issues
+You may open an issue here: https://github.com/julianxhokaxhiu/tnx3000/issues
 
 Remember to include:
-- the `FFNx.log` file you got immediately after the crash ( if you run the game again, it will be overwritten and precious information to understand the issue will be lost forever )
+- the `tnx3000.log` file you got immediately after the crash ( if you run the game again, it will be overwritten and precious information to understand the issue will be lost forever )
 - a save file of the nearest location required to replicate the issue
 - a description of the issue and how to replicate it
 - a proof ( picture or video ) that shows the intended issue

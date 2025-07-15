@@ -9,13 +9,13 @@
 //    Copyright (C) 2023 Cosmos                                             //
 //    Copyright (C) 2023 Tang-Tang Zhou                                     //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
@@ -106,7 +106,7 @@ namespace ff7::field
 
         if(is_fps_running_more_than_original() && *ff7_externals.field_id == 748)
         {
-            // Fix softlock related to this discussion https://github.com/julianxhokaxhiu/FFNx/discussions/569. 
+            // Fix softlock related to this discussion https://github.com/julianxhokaxhiu/tnx3000/discussions/569. 
             // The issue is due to the fact that when Cloud climb up, there is a mini auto movement which triggers a line making Cloud jump below.
             // This script that makes Cloud jump below does not end well, which makes the next script overlapping with this.
             // If the next script is to climb back up, there is a sort of race condition where the player movability is activated.

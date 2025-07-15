@@ -8,13 +8,13 @@
 //    Copyright (C) 2025 Julian Xhokaxhiu                                   //
 //    Copyright (C) 2023 Cosmos                                             //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
@@ -40,7 +40,7 @@
 #include "utils.h"
 #include "renderer.h"
 
-CMRC_DECLARE(FFNx);
+CMRC_DECLARE(tnx3000);
 
 Renderer newRenderer;
 RendererCallbacks bgfxCallbacks;
@@ -1099,17 +1099,17 @@ void Renderer::reset()
 
 #define FFNX_LOGO_PATH ".logo/logo_nobg.png"
 
-void Renderer::prepareFFNxLogo()
+void Renderer::preparetnx3000Logo()
 {
-    if (bgfx::isValid(FFNxLogoHandle))
-        bgfx::destroy(FFNxLogoHandle);
+    if (bgfx::isValid(tnx3000LogoHandle))
+        bgfx::destroy(tnx3000LogoHandle);
 
-    auto fs = cmrc::FFNx::get_filesystem();
+    auto fs = cmrc::tnx3000::get_filesystem();
     auto logo = fs.open(FFNX_LOGO_PATH);
 
     uint32_t width, height, mipCount = 0;
-    FFNxLogoHandle = createTextureHandle(&logo, FFNX_LOGO_PATH, &width, &height, &mipCount, true);
-    if (!FFNxLogoHandle.idx) FFNxLogoHandle = BGFX_INVALID_HANDLE;
+    tnx3000LogoHandle = createTextureHandle(&logo, FFNX_LOGO_PATH, &width, &height, &mipCount, true);
+    if (!tnx3000LogoHandle.idx) tnx3000LogoHandle = BGFX_INVALID_HANDLE;
 }
 
 void Renderer::prepareShadowMap()
@@ -1193,7 +1193,7 @@ void Renderer::prepareGamutLUTs()
 		bgfx::destroy(GLUTHandleEBUtoNTSCJ);
 
 	// load only the LUTs we are likely to need
-	// consult the global setting so we don't get tripped up by renderer state changing to accomodate the FFNx logo
+	// consult the global setting so we don't get tripped up by renderer state changing to accomodate the tnx3000 logo
 	if (enable_ntscj_gamut_mode){
 		if (internalState.bIsHDR){
 			// Final NTSC-J to rec2020 conversion will be handled by matrix math in the shader (no gamut compression mapping needed)
@@ -1519,7 +1519,7 @@ void Renderer::drawOverlay()
         overlay.draw();
 }
 
-void Renderer::drawFFNxLogo(float fade)
+void Renderer::drawtnx3000Logo(float fade)
 {
     setClearFlags(true, false);
 
@@ -1576,7 +1576,7 @@ void Renderer::drawFFNxLogo(float fade)
 	bindIndexBuffer(indices, 6);
 
     resetState();
-    setOverallColorGamut(COLORGAMUT_SRGB); // always draw the logo in sRGB mode. The old setting is restored in drawFFNxLogo() in common.cpp
+    setOverallColorGamut(COLORGAMUT_SRGB); // always draw the logo in sRGB mode. The old setting is restored in drawtnx3000Logo() in common.cpp
 	setPrimitiveType();
 	isTLVertex(true);
 	setCullMode(RendererCullMode::DISABLED);
@@ -1587,7 +1587,7 @@ void Renderer::drawFFNxLogo(float fade)
 	doDepthTest(false);
 	doDepthWrite(false);
     doModulateAlpha(true);
-    useTexture(FFNxLogoHandle.idx);
+    useTexture(tnx3000LogoHandle.idx);
 
 	draw();
 }

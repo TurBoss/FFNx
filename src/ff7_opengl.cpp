@@ -9,13 +9,13 @@
 //    Copyright (C) 2023 Cosmos                                             //
 //    Copyright (C) 2023 Marcin 'Maki' Gomulak                              //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
@@ -37,9 +37,9 @@ WORD snowboard_fix[] = {0x0F, 0x10, 0x0F};
 
 uint32_t ff7_credits_loop_gfx_begin_scene(uint32_t unknown, struct game_obj *game_object)
 {
-	if (drawFFNxLogoFrame(game_object)) {
+	if (drawtnx3000LogoFrame(game_object)) {
 		if (ff7_externals.get_button_pressed(-1)) {
-			stopDrawFFNxLogo();
+			stopDrawtnx3000Logo();
 		}
 
 		return 0;

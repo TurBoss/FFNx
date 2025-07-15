@@ -1,6 +1,6 @@
 # Shortcuts
 
-FFNx comes with various built-in shortcuts which would allow you to boost or enjoy your gameplay experience.
+tnx3000 comes with various built-in shortcuts which would allow you to boost or enjoy your gameplay experience.
 
 ### Fullscreen
 
@@ -46,7 +46,7 @@ Shortcuts:
 
 ### Speedhack
 
-This cheat will allow you to boost the gameplay timing up to 8x ( by default, [you can configure this](<(https://github.com/julianxhokaxhiu/FFNx/blob/master/misc/FFNx.toml#L200)>) up to your pleasure ).
+This cheat will allow you to boost the gameplay timing up to 8x ( by default, [you can configure this](<(https://github.com/julianxhokaxhiu/tnx3000/blob/master/misc/tnx3000.toml#L200)>) up to your pleasure ).
 
 Shortcuts:
 

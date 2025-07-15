@@ -9,13 +9,13 @@
 //    Copyright (C) 2025 Julian Xhokaxhiu                                   //
 //    Copyright (C) 2023 Cosmos                                             //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
@@ -277,7 +277,7 @@ void ffmpeg_log_callback(void* ptr, int level, const char* fmt, va_list vl)
 	}
 
 	if (level <= AV_LOG_ERROR) {
-		FFNxStackWalker sw;
+		tnx3000StackWalker sw;
 		sw.ShowCallstack();
 	}
 }
@@ -965,7 +965,7 @@ int common_create_window(HINSTANCE hInstance, struct game_obj* game_object)
 				max_texture_size = newRenderer.getCaps()->limits.maxTextureSize;
 				ffnx_info("Max texture size: %ix%i\n", max_texture_size, max_texture_size);
 
-				newRenderer.prepareFFNxLogo();
+				newRenderer.preparetnx3000Logo();
 
 				newRenderer.prepareEnvBrdf();
 
@@ -2936,13 +2936,13 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 		GetCurrentDirectoryA(BASEDIR_LENGTH, basedir);
 
 		// install crash handler
-		open_applog("FFNx.log");
+		open_applog("tnx3000.log");
 		SetUnhandledExceptionFilter(ExceptionHandler);
 
 		// prevent screensavers
 		SetThreadExecutionState(ES_CONTINUOUS | ES_DISPLAY_REQUIRED | ES_SYSTEM_REQUIRED);
 
-		ffnx_info("FFNx driver version " VERSION "\n");
+		ffnx_info("tnx3000 driver version " VERSION "\n");
 		version = get_version();
 		if (version >= VERSION_FF8_12_US)
 		{
@@ -2982,8 +2982,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 		if (!isFileSigned(L"steam_api.dll"))
 		{
-			ffnx_unexpected("Invalid steam_api.dll detected. Please ensure your FFNx installation is not corrupted or tampered by unauthorized software.\n");
-			MessageBoxA(NULL, "Invalid steam_api.dll detected. Please ensure your FFNx installation is not corrupted or tampered by unauthorized software.", "Error", MB_ICONERROR | MB_OK);
+			ffnx_unexpected("Invalid steam_api.dll detected. Please ensure your tnx3000 installation is not corrupted or tampered by unauthorized software.\n");
+			MessageBoxA(NULL, "Invalid steam_api.dll detected. Please ensure your tnx3000 installation is not corrupted or tampered by unauthorized software.", "Error", MB_ICONERROR | MB_OK);
 			return FALSE;
 		}
 
@@ -3056,8 +3056,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Cloudiar Inc.\FF7OR\1.00\Sound)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
 					if (external_sfx_volume < 0) RegQueryValueEx(ff7_regkey, "SFXVolume", NULL, NULL, (LPBYTE)&external_sfx_volume, &regsize);
 
-				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Cloudiar Inc.\FF7OR\1.00\FFNx)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
-				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Cloudiar Inc.\FF7OR\1.00\FFNx)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
+				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Cloudiar Inc.\FF7OR\1.00\tnx3000)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
+				if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, R"(Software\Cloudiar Inc.\FF7OR\1.00\tnx3000)", 0, KEY_QUERY_VALUE | KEY_WOW64_32KEY, &ff7_regkey) == ERROR_SUCCESS)
 				{
 					if (external_ambient_volume < 0) RegQueryValueEx(ff7_regkey, "AmbientVolume", NULL, NULL, (LPBYTE)&external_ambient_volume, &regsize);
 					if (ffmpeg_video_volume < 0) RegQueryValueEx(ff7_regkey, "MovieVolume", NULL, NULL, (LPBYTE)&ffmpeg_video_volume, &regsize);
@@ -3499,7 +3499,7 @@ __declspec(dllexport) HRESULT __stdcall EAXDirectSoundCreate(LPGUID guid, LPLPDI
 	char eax_dll[MAX_PATH] = {};
 
 	if (fileExists("creative_eax.dll")) {
-		// For portable installation, this name can be used to load the official Creative EAX 2.0+ DLL along with FFNx
+		// For portable installation, this name can be used to load the official Creative EAX 2.0+ DLL along with tnx3000
 		snprintf(eax_dll, sizeof(eax_dll), R"(%s\creative_eax.dll)", basedir);
 	} else {
 		GetSystemDirectoryA(eax_dll, sizeof(eax_dll));
@@ -3540,14 +3540,14 @@ void ffnx_inject_driver(struct game_obj* game_object)
 constexpr int FFNX_LOGO_FRAME_COUNT = 180;
 int ffnx_logo_current_frame = 0;
 
-bool drawFFNxLogoFrame(struct game_obj* game_object)
+bool drawtnx3000LogoFrame(struct game_obj* game_object)
 {
 	static int was_lighting_enabled = -1;
 
 	if (was_lighting_enabled == -1) was_lighting_enabled = enable_lighting;
 
 	if (ffnx_logo_current_frame >= FFNX_LOGO_FRAME_COUNT) {
-		newRenderer.setOverallColorGamut(enable_ntscj_gamut_mode ? COLORGAMUT_NTSCJ : COLORGAMUT_SRGB); // set the gamut back to what it was before newRenderer.drawFFNxLogo() changed it
+		newRenderer.setOverallColorGamut(enable_ntscj_gamut_mode ? COLORGAMUT_NTSCJ : COLORGAMUT_SRGB); // set the gamut back to what it was before newRenderer.drawtnx3000Logo() changed it
 		enable_lighting = was_lighting_enabled;
 		return false;
 	}
@@ -3566,7 +3566,7 @@ bool drawFFNxLogoFrame(struct game_obj* game_object)
 
 	enable_lighting = false;
 
-	newRenderer.drawFFNxLogo(fade);
+	newRenderer.drawtnx3000Logo(fade);
 
 	common_flip(game_object);
 
@@ -3575,7 +3575,7 @@ bool drawFFNxLogoFrame(struct game_obj* game_object)
 	return true;
 }
 
-void stopDrawFFNxLogo()
+void stopDrawtnx3000Logo()
 {
 	ffnx_logo_current_frame = FFNX_LOGO_FRAME_COUNT;
 }

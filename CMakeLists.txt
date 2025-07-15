@@ -7,13 +7,13 @@
 #    Copyright (C) 2020 John Pritchard                                        #
 #    Copyright (C) 2025 Julian Xhokaxhiu                                      #
 #                                                                             #
-#    This file is part of FFNx                                                #
+#    This file is part of tnx3000                                                #
 #                                                                             #
-#    FFNx is free software: you can redistribute it and/or modify             #
+#    tnx3000 is free software: you can redistribute it and/or modify             #
 #    it under the terms of the GNU General Public License as published by     #
 #    the Free Software Foundation, either version 3 of the License            #
 #                                                                             #
-#    FFNx is distributed in the hope that it will be useful,                  #
+#    tnx3000 is distributed in the hope that it will be useful,                  #
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of           #
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            #
 #    GNU General Public License for more details.                             #
@@ -70,7 +70,7 @@ if(PROFILING)
   add_definitions(-DPROFILE)
 endif()
 
-project(FFNx)
+project(tnx3000)
 
 find_package(ZLIB REQUIRED)
 find_package(BX REQUIRED)
@@ -96,7 +96,7 @@ find_package(lfreist-hwinfo CONFIG REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(tomlplusplus REQUIRED IMPORTED_TARGET tomlplusplus)
 
-set(RELEASE_NAME "FFNx")
+set(RELEASE_NAME "tnx3000")
 
 if(_DLL_VERSION STREQUAL "devel" OR _DLL_VERSION MATCHES "-")
   set(_DLL_RCVERSION "0,0,0,0")
@@ -108,7 +108,7 @@ else()
 endif()
 
 # Choco driver
-set(CHOCO_RELEASE_NAME "FFNx-Choco")
+set(CHOCO_RELEASE_NAME "tnx3000-choco")
 file(GLOB_RECURSE choco_source_files "${CMAKE_SOURCE_DIR}/choco/*.cpp")
 add_library(${CHOCO_RELEASE_NAME} SHARED ${choco_source_files} ${CMAKE_CURRENT_BINARY_DIR}/version.rc)
 target_include_directories(
@@ -231,7 +231,7 @@ target_link_options(
 )
 
 # SHADER COMPILATION
-set(FFNX_SHADERS "FFNx" "FFNx.lighting" "FFNx.shadowmap" "FFNx.field.shadow" "FFNx.overlay" "FFNx.post" "FFNx.blit")
+set(FFNX_SHADERS "tnx3000" "tnx3000.lighting" "tnx3000.shadowmap" "tnx3000.field.shadow" "tnx3000.overlay" "tnx3000.post" "tnx3000.blit")
 foreach(FFNX_SHADER IN LISTS FFNX_SHADERS)
   foreach(BGFX_VARYING flat smooth)
     add_custom_command(
@@ -411,54 +411,54 @@ add_custom_command(
     ${CMAKE_BINARY_DIR}/vcpkg_installed/x86-windows-static/tools/cpuinfo/isa-info
 )
 
-# Copy FFNx release to FF7 1998 game path if installed
+# Copy tnx3000 release to FF7 1998 game path if installed
 cmake_host_system_information(RESULT FF7_1998_GAME_PATH QUERY WINDOWS_REGISTRY "HKLM/SOFTWARE/Cloudiar Inc./FF7OR" VALUE "AppPath" ERROR_VARIABLE FF7_KEY_QUERY_RES)
 if("${FF7_KEY_QUERY_RES}" STREQUAL "")
   cmake_path(CONVERT "${FF7_1998_GAME_PATH}" TO_CMAKE_PATH_LIST FF7_1998_GAME_PATH)
-  # Ensure FFNx.toml exists so the copy on build does not error on fresh installs
-  if(NOT EXISTS "${FF7_1998_GAME_PATH}/FFNx.toml")
+  # Ensure tnx3000.toml exists so the copy on build does not error on fresh installs
+  if(NOT EXISTS "${FF7_1998_GAME_PATH}/tnx3000.toml")
     # Copy file if it doesn't exist
-    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/misc/FFNx.toml" DESTINATION "${FF7_1998_GAME_PATH}/")
+    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/misc/tnx3000.toml" DESTINATION "${FF7_1998_GAME_PATH}/")
   endif()
   add_custom_command(
     TARGET ${RELEASE_NAME}
     POST_BUILD
     COMMAND echo Copying ${RELEASE_NAME} ${_DLL_VERSION} release to ${FF7_1998_GAME_PATH}...
-    # Preserve the current FFNx.toml
+    # Preserve the current tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E rename
-            ${FF7_1998_GAME_PATH}/FFNx.toml
-            ${FF7_1998_GAME_PATH}/FFNx.toml.bak
+            ${FF7_1998_GAME_PATH}/tnx3000.toml
+            ${FF7_1998_GAME_PATH}/tnx3000.toml.bak
     # Copy all dist files
     COMMAND ${CMAKE_COMMAND} -E copy_directory
             ${CMAKE_BINARY_DIR}/bin
             ${FF7_1998_GAME_PATH}
-    # Delete the new copied FFNx.toml
+    # Delete the new copied tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E remove
-            ${FF7_1998_GAME_PATH}/FFNx.toml
-    # Bring back the existing FFNx.toml
+            ${FF7_1998_GAME_PATH}/tnx3000.toml
+    # Bring back the existing tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E rename
-            ${FF7_1998_GAME_PATH}/FFNx.toml.bak
-            ${FF7_1998_GAME_PATH}/FFNx.toml
+            ${FF7_1998_GAME_PATH}/tnx3000.toml.bak
+            ${FF7_1998_GAME_PATH}/tnx3000.toml
   )
 endif()
 
-# Copy FFNx release to FF8 2000 game path if installed
+# Copy tnx3000 release to FF8 2000 game path if installed
 cmake_host_system_information(RESULT FF8_2000_GAME_PATH QUERY WINDOWS_REGISTRY "HKLM/SOFTWARE/Cloudiar Inc./FF7OR/1.00" VALUE "AppPath" ERROR_VARIABLE FF8_KEY_QUERY_RES)
 if("${FF8_KEY_QUERY_RES}" STREQUAL "")
   cmake_path(CONVERT "${FF8_2000_GAME_PATH}" TO_CMAKE_PATH_LIST FF8_2000_GAME_PATH)
-  # Ensure FFNx.toml exists so the copy on build does not error on fresh installs
-  if(NOT EXISTS "${FF8_2000_GAME_PATH}/FFNx.toml")
+  # Ensure tnx3000.toml exists so the copy on build does not error on fresh installs
+  if(NOT EXISTS "${FF8_2000_GAME_PATH}/tnx3000.toml")
     # Copy file if it doesn't exist
-    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/misc/FFNx.toml" DESTINATION "${FF8_2000_GAME_PATH}/")
+    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/misc/tnx3000.toml" DESTINATION "${FF8_2000_GAME_PATH}/")
   endif()
   add_custom_command(
     TARGET ${RELEASE_NAME}
     POST_BUILD
     COMMAND echo Copying ${RELEASE_NAME} ${_DLL_VERSION} release to ${FF8_2000_GAME_PATH}...
-    # Preserve the current FFNx.toml
+    # Preserve the current tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E rename
-            ${FF8_2000_GAME_PATH}/FFNx.toml
-            ${FF8_2000_GAME_PATH}/FFNx.toml.bak
+            ${FF8_2000_GAME_PATH}/tnx3000.toml
+            ${FF8_2000_GAME_PATH}/tnx3000.toml.bak
     # Copy all dist files
     COMMAND ${CMAKE_COMMAND} -E copy_directory
             ${CMAKE_BINARY_DIR}/bin
@@ -466,21 +466,21 @@ if("${FF8_KEY_QUERY_RES}" STREQUAL "")
     # Delete previous eax.dll
     COMMAND ${CMAKE_COMMAND} -E remove
             ${FF8_2000_GAME_PATH}/eax.dll
-    # Rename FFNx.dll to eax.dll
+    # Rename tnx3000.dll to eax.dll
     COMMAND ${CMAKE_COMMAND} -E rename
-            ${FF8_2000_GAME_PATH}/FFNx.dll
+            ${FF8_2000_GAME_PATH}/tnx3000.dll
             ${FF8_2000_GAME_PATH}/eax.dll
-    # Delete the new copied FFNx.toml
+    # Delete the new copied tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E remove
-            ${FF8_2000_GAME_PATH}/FFNx.toml
-    # Bring back the existing FFNx.toml
+            ${FF8_2000_GAME_PATH}/tnx3000.toml
+    # Bring back the existing tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E rename
-            ${FF8_2000_GAME_PATH}/FFNx.toml.bak
-            ${FF8_2000_GAME_PATH}/FFNx.toml
+            ${FF8_2000_GAME_PATH}/tnx3000.toml.bak
+            ${FF8_2000_GAME_PATH}/tnx3000.toml
   )
 endif()
 
-# Copy FFNx release to FF7 Steam game path if installed
+# Copy tnx3000 release to FF7 Steam game path if installed
 execute_process(
   COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/utils/FindSteamGamePath 39140
   OUTPUT_VARIABLE FF7_STEAM_GAME_PATH
@@ -489,19 +489,19 @@ execute_process(
 )
 if(NOT "${FF7_STEAM_GAME_PATH}" STREQUAL "")
   cmake_path(CONVERT "${FF7_STEAM_GAME_PATH}" TO_CMAKE_PATH_LIST FF7_STEAM_GAME_PATH)
-  # Ensure FFNx.toml exists so the copy on build does not error on fresh installs
-  if(NOT EXISTS "${FF7_STEAM_GAME_PATH}/FFNx.toml")
+  # Ensure tnx3000.toml exists so the copy on build does not error on fresh installs
+  if(NOT EXISTS "${FF7_STEAM_GAME_PATH}/tnx3000.toml")
     # Copy file if it doesn't exist
-    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/misc/FFNx.toml" DESTINATION "${FF7_STEAM_GAME_PATH}/")
+    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/misc/tnx3000.toml" DESTINATION "${FF7_STEAM_GAME_PATH}/")
   endif()
   add_custom_command(
     TARGET ${RELEASE_NAME}
     POST_BUILD
     COMMAND echo Copying ${RELEASE_NAME} ${_DLL_VERSION} release to ${FF7_STEAM_GAME_PATH}...
-    # Preserve the current FFNx.toml
+    # Preserve the current tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E rename
-            ${FF7_STEAM_GAME_PATH}/FFNx.toml
-            ${FF7_STEAM_GAME_PATH}/FFNx.toml.bak
+            ${FF7_STEAM_GAME_PATH}/tnx3000.toml
+            ${FF7_STEAM_GAME_PATH}/tnx3000.toml.bak
     # Copy all dist files
     COMMAND ${CMAKE_COMMAND} -E copy_directory
             ${CMAKE_BINARY_DIR}/bin
@@ -509,21 +509,21 @@ if(NOT "${FF7_STEAM_GAME_PATH}" STREQUAL "")
     # Delete previous AF3DN.P
     COMMAND ${CMAKE_COMMAND} -E remove
             ${FF7_STEAM_GAME_PATH}/AF3DN.P
-    # Rename FFNx.dll to AF3DN.P
+    # Rename tnx3000.dll to AF3DN.P
     COMMAND ${CMAKE_COMMAND} -E rename
-            ${FF7_STEAM_GAME_PATH}/FFNx.dll
+            ${FF7_STEAM_GAME_PATH}/tnx3000.dll
             ${FF7_STEAM_GAME_PATH}/AF3DN.P
-    # Delete the new copied FFNx.toml
+    # Delete the new copied tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E remove
-            ${FF7_STEAM_GAME_PATH}/FFNx.toml
-    # Bring back the existing FFNx.toml
+            ${FF7_STEAM_GAME_PATH}/tnx3000.toml
+    # Bring back the existing tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E rename
-            ${FF7_STEAM_GAME_PATH}/FFNx.toml.bak
-            ${FF7_STEAM_GAME_PATH}/FFNx.toml
+            ${FF7_STEAM_GAME_PATH}/tnx3000.toml.bak
+            ${FF7_STEAM_GAME_PATH}/tnx3000.toml
   )
 endif()
 
-# Copy FFNx release to FF7 Steam game path if installed
+# Copy tnx3000 release to FF7 Steam game path if installed
 execute_process(
   COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/utils/FindSteamGamePath 39150
   OUTPUT_VARIABLE FF8_STEAM_GAME_PATH
@@ -532,19 +532,19 @@ execute_process(
 )
 if(NOT "${FF8_STEAM_GAME_PATH}" STREQUAL "")
   cmake_path(CONVERT "${FF8_STEAM_GAME_PATH}" TO_CMAKE_PATH_LIST FF8_STEAM_GAME_PATH)
-  # Ensure FFNx.toml exists so the copy on build does not error on fresh installs
-  if(NOT EXISTS "${FF8_STEAM_GAME_PATH}/FFNx.toml")
+  # Ensure tnx3000.toml exists so the copy on build does not error on fresh installs
+  if(NOT EXISTS "${FF8_STEAM_GAME_PATH}/tnx3000.toml")
     # Copy file if it doesn't exist
-    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/misc/FFNx.toml" DESTINATION "${FF8_STEAM_GAME_PATH}/")
+    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/misc/tnx3000.toml" DESTINATION "${FF8_STEAM_GAME_PATH}/")
   endif()
   add_custom_command(
     TARGET ${RELEASE_NAME}
     POST_BUILD
     COMMAND echo Copying ${RELEASE_NAME} ${_DLL_VERSION} release to ${FF8_STEAM_GAME_PATH}...
-    # Preserve the current FFNx.toml
+    # Preserve the current tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E rename
-            ${FF8_STEAM_GAME_PATH}/FFNx.toml
-            ${FF8_STEAM_GAME_PATH}/FFNx.toml.bak
+            ${FF8_STEAM_GAME_PATH}/tnx3000.toml
+            ${FF8_STEAM_GAME_PATH}/tnx3000.toml.bak
     # Copy all dist files
     COMMAND ${CMAKE_COMMAND} -E copy_directory
             ${CMAKE_BINARY_DIR}/bin
@@ -552,16 +552,16 @@ if(NOT "${FF8_STEAM_GAME_PATH}" STREQUAL "")
     # Delete previous AF3DN.P
     COMMAND ${CMAKE_COMMAND} -E remove
             ${FF8_STEAM_GAME_PATH}/AF3DN.P
-    # Rename FFNx.dll to AF3DN.P
+    # Rename tnx3000.dll to AF3DN.P
     COMMAND ${CMAKE_COMMAND} -E rename
-            ${FF8_STEAM_GAME_PATH}/FFNx.dll
+            ${FF8_STEAM_GAME_PATH}/tnx3000.dll
             ${FF8_STEAM_GAME_PATH}/AF3DN.P
-    # Delete the new copied FFNx.toml
+    # Delete the new copied tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E remove
-            ${FF8_STEAM_GAME_PATH}/FFNx.toml
-    # Bring back the existing FFNx.toml
+            ${FF8_STEAM_GAME_PATH}/tnx3000.toml
+    # Bring back the existing tnx3000.toml
     COMMAND ${CMAKE_COMMAND} -E rename
-            ${FF8_STEAM_GAME_PATH}/FFNx.toml.bak
-            ${FF8_STEAM_GAME_PATH}/FFNx.toml
+            ${FF8_STEAM_GAME_PATH}/tnx3000.toml.bak
+            ${FF8_STEAM_GAME_PATH}/tnx3000.toml
   )
 endif()

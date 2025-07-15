@@ -1,13 +1,13 @@
 /****************************************************************************/
 //    Copyright (C) 2023 Cosmos                                             //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
@@ -17,7 +17,7 @@ $input v_position0, v_color0, v_shadow0
 
 #include <bgfx/bgfx_shader.sh>
 #define FIELD_SHADOW 1
-#include "FFNx.pcf.sh"
+#include "tnx3000.pcf.sh"
 
 uniform vec4 lightingDebugData;
 

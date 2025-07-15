@@ -1,32 +1,43 @@
 /****************************************************************************/
 //    Copyright (C) 2023 Cosmos                                             //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
 /****************************************************************************/
 
-$input a_position, a_texcoord0
-$output v_texcoord0
+$input a_position, a_color0, a_texcoord0, a_normal
+$output v_color0, v_texcoord0, v_position0, v_shadow0, v_normal0
 
 #include <bgfx/bgfx_shader.sh>
 
+uniform mat4 worldView;
+uniform mat4 lightViewProjMatrix;
+
 void main()
 {
-    vec4 pos = a_position;
+	vec4 pos = a_position;
+    vec4 color = a_color0;
+    vec2 coords = a_texcoord0;
 
-    pos.w = 1.0 / pos.w;
-    pos.xyz *= pos.w;
-    pos = mul(u_proj, pos);
+    color.rgba = color.bgra;
+
+    if (color.a > 0.5) color.a = 0.5;
+    else if(color.r + color.g + color.b == 0.0)
+    {
+        color.a = -1;
+    }
+
+    pos = mul(mul(lightViewProjMatrix, worldView), vec4(pos.xyz, 1.0));
 
     gl_Position = pos;
-    v_texcoord0 = a_texcoord0;
+    v_color0 = color;
+    v_texcoord0 = coords;
 }
-

@@ -1,20 +1,20 @@
 /****************************************************************************/
 //    Copyright (C) 2023 Cosmos                                             //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
 /****************************************************************************/
 
-#include "FFNx.pcf.sh"
-#include "FFNx.common.sh"
+#include "tnx3000.pcf.sh"
+#include "tnx3000.common.sh"
 
 // Specular IBL cubemap
 SAMPLERCUBE(tex_7, 7);

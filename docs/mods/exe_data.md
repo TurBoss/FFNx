@@ -7,7 +7,7 @@ This feature allows modders to override data from the EXE via the
 (Direct Mode)[direct_mode.md] feature.
 
 Use the `save_exe_data` option to dump files to the direct/exe/ directory.
-And then FFNx will look for those files directly instead of data from the EXE.
+And then tnx3000 will look for those files directly instead of data from the EXE.
 
 ## Supported data
 

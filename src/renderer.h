@@ -8,13 +8,13 @@
 //    Copyright (C) 2025 Julian Xhokaxhiu                                   //
 //    Copyright (C) 2023 Cosmos                                             //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
@@ -330,24 +330,24 @@ private:
         bool isViewMatrixSet = false;
     };
 
-    std::string vertexPathFlat = "shaders/FFNx";
-    std::string fragmentPathFlat = "shaders/FFNx";
-    std::string vertexPathSmooth = "shaders/FFNx";
-    std::string fragmentPathSmooth = "shaders/FFNx";
-    std::string vertexPostPath = "shaders/FFNx.post";
-    std::string fragmentPostPath = "shaders/FFNx.post";
-    std::string vertexOverlayPath = "shaders/FFNx.overlay";
-    std::string fragmentOverlayPath = "shaders/FFNx.overlay";
-    std::string vertexLightingPathFlat = "shaders/FFNx.lighting";
-    std::string fragmentLightingPathFlat = "shaders/FFNx.lighting";
-    std::string vertexLightingPathSmooth = "shaders/FFNx.lighting";
-    std::string fragmentLightingPathSmooth = "shaders/FFNx.lighting";
-    std::string vertexShadowMapPath = "shaders/FFNx.shadowmap";
-    std::string fragmentShadowMapPath = "shaders/FFNx.shadowmap";
-    std::string vertexFieldShadowPath = "shaders/FFNx.field.shadow";
-    std::string fragmentFieldShadowPath = "shaders/FFNx.field.shadow";
-    std::string vertexBlitPath = "shaders/FFNx.blit";
-    std::string fragmentBlitPath = "shaders/FFNx.blit";
+    std::string vertexPathFlat = "shaders/tnx3000";
+    std::string fragmentPathFlat = "shaders/tnx3000";
+    std::string vertexPathSmooth = "shaders/tnx3000";
+    std::string fragmentPathSmooth = "shaders/tnx3000";
+    std::string vertexPostPath = "shaders/tnx3000.post";
+    std::string fragmentPostPath = "shaders/tnx3000.post";
+    std::string vertexOverlayPath = "shaders/tnx3000.overlay";
+    std::string fragmentOverlayPath = "shaders/tnx3000.overlay";
+    std::string vertexLightingPathFlat = "shaders/tnx3000.lighting";
+    std::string fragmentLightingPathFlat = "shaders/tnx3000.lighting";
+    std::string vertexLightingPathSmooth = "shaders/tnx3000.lighting";
+    std::string fragmentLightingPathSmooth = "shaders/tnx3000.lighting";
+    std::string vertexShadowMapPath = "shaders/tnx3000.shadowmap";
+    std::string fragmentShadowMapPath = "shaders/tnx3000.shadowmap";
+    std::string vertexFieldShadowPath = "shaders/tnx3000.field.shadow";
+    std::string fragmentFieldShadowPath = "shaders/tnx3000.field.shadow";
+    std::string vertexBlitPath = "shaders/tnx3000.blit";
+    std::string fragmentBlitPath = "shaders/tnx3000.blit";
 
     bgfx::ViewId backendViewId = 1;
     RendererProgram backendProgram = RendererProgram::SMOOTH;
@@ -370,7 +370,7 @@ private:
     std::vector<WORD> indexBufferData;
     bgfx::DynamicIndexBufferHandle indexBufferHandle = BGFX_INVALID_HANDLE;
 
-    bgfx::TextureHandle FFNxLogoHandle = BGFX_INVALID_HANDLE;
+    bgfx::TextureHandle tnx3000LogoHandle = BGFX_INVALID_HANDLE;
 
     bgfx::TextureHandle GLUTHandleNTSCJtoSRGB = BGFX_INVALID_HANDLE;
     bgfx::TextureHandle GLUTHandleSMPTECtoSRGB = BGFX_INVALID_HANDLE;
@@ -444,7 +444,7 @@ public:
 
     void init();
     void reset();
-    void prepareFFNxLogo();
+    void preparetnx3000Logo();
     void prepareShadowMap();
     void prepareSpecularIbl(char* fullpath = nullptr);
     void prepareDiffuseIbl(char* fullpath = nullptr);
@@ -460,7 +460,7 @@ public:
     void draw(bool uniformsAlreadyAttached = false, bool texturesAlreadyAttached = false, bool keepBindings = false);
     void discardAllBindings();
     void drawOverlay();
-    void drawFFNxLogo(float fade);
+    void drawtnx3000Logo(float fade);
     void show();
 
     void printText(uint16_t x, uint16_t y, uint32_t attr, const char* text);

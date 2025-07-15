@@ -7,13 +7,13 @@
 //    Copyright (C) 2020 John Pritchard                                     //
 //    Copyright (C) 2025 Julian Xhokaxhiu                                   //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
@@ -865,11 +865,11 @@ uint32_t ff8_retry_configured_drive(char* filename, uint8_t* data)
 
 uint32_t ff8_credits_main_loop_gfx_begin_scene(uint32_t unknown, struct game_obj *game_object)
 {
-	if (drawFFNxLogoFrame(game_object)) {
+	if (drawtnx3000LogoFrame(game_object)) {
 		ff8_externals.input_fill_keystate();
 
 		if (((ff8_externals.input_get_keyscan(0, 0) & ff8_externals.input_get_keyscan(1, 0)) & 0xF0) != 0) {
-			stopDrawFFNxLogo();
+			stopDrawtnx3000Logo();
 		}
 
 		return 0;
@@ -1623,7 +1623,7 @@ void ff8_init_hooks(struct game_obj *_game_object)
 
 	// Allow squaresoft logo skip by pressing a button
 	patch_code_byte(ff8_externals.load_credits_image + 0x5FD, 0); // if (intro_step >= 0) ...
-	// Add FFNx Logo
+	// Add tnx3000 Logo
 	replace_call(ff8_externals.credits_main_loop + 0x6D, ff8_credits_main_loop_gfx_begin_scene);
 	// Fix credits intro synchronization with the music
 	replace_call(ff8_externals.load_credits_image + 0x164, credits_controller_music_play);

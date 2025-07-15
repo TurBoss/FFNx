@@ -1,31 +1,35 @@
 /****************************************************************************/
+//    Copyright (C) 2009 Aali132                                            //
+//    Copyright (C) 2018 quantumpencil                                      //
+//    Copyright (C) 2018 Maxime Bacoux                                      //
+//    Copyright (C) 2020 myst6re                                            //
+//    Copyright (C) 2020 Chris Rizzitello                                   //
+//    Copyright (C) 2020 John Pritchard                                     //
+//    Copyright (C) 2025 Julian Xhokaxhiu                                   //
 //    Copyright (C) 2023 Cosmos                                             //
 //                                                                          //
-//    This file is part of FFNx                                             //
+//    This file is part of tnx3000                                             //
 //                                                                          //
-//    FFNx is free software: you can redistribute it and/or modify          //
+//    tnx3000 is free software: you can redistribute it and/or modify          //
 //    it under the terms of the GNU General Public License as published by  //
 //    the Free Software Foundation, either version 3 of the License         //
 //                                                                          //
-//    FFNx is distributed in the hope that it will be useful,               //
+//    tnx3000 is distributed in the hope that it will be useful,               //
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of        //
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 //    GNU General Public License for more details.                          //
 /****************************************************************************/
 
-$input v_color0, v_texcoord0, v_position0, v_shadow0, v_normal0
+$input v_color0, v_texcoord0, v_position0, v_normal0
 
 #include <bgfx/bgfx_shader.sh>
-#include "FFNx.lighting.sh"
+#include "tnx3000.common.sh"
 
-// TEX_YUV
-SAMPLER2D(tex_0, 0); // Y
-SAMPLER2D(tex_1, 1); // U
-SAMPLER2D(tex_2, 2); // V
-// TEX_NML
-SAMPLER2D(tex_5, 5);
-// TEX_PBR
-SAMPLER2D(tex_6, 6);
+SAMPLER2D(tex_0, 0);
+SAMPLER2D(tex_1, 1);
+SAMPLER2D(tex_2, 2);
+
+uniform mat4 invViewMatrix;
 
 uniform vec4 VSFlags;
 uniform vec4 FSAlphaFlags;
@@ -34,12 +38,8 @@ uniform vec4 FSHDRFlags;
 uniform vec4 FSTexFlags;
 uniform vec4 WMFlags;
 uniform vec4 FSMovieFlags;
-
-uniform vec4 lightingSettings;
-uniform vec4 lightingDebugData;
-uniform vec4 materialData;
-uniform vec4 materialScaleData;
-uniform vec4 iblData;
+uniform vec4 TimeColor;
+uniform vec4 TimeData;
 uniform vec4 gameLightingFlags;
 uniform vec4 gameGlobalLightColor;
 uniform vec4 gameLightColor1;
@@ -66,6 +66,7 @@ uniform vec4 gameScriptedLightColor;
 
 #define doAlphaTest FSAlphaFlags.z > 0.0
 
+
 // ---
 #define isFullRange FSMiscFlags.x > 0.0
 #define isYUV FSMiscFlags.y > 0.0
@@ -76,6 +77,7 @@ uniform vec4 gameScriptedLightColor;
 #define monitorNits FSHDRFlags.y
 
 #define doGamutOverride FSHDRFlags.z > 0.0
+
 
 #define isBT601ColorMatrix abs(FSMovieFlags.x - 0.0) < 0.00001
 #define isBT709ColorMatrix abs(FSMovieFlags.x - 1.0) < 0.00001
@@ -95,35 +97,17 @@ uniform vec4 gameScriptedLightColor;
 #define isOverallSRGBColorGamut abs(FSMovieFlags.w - 0.0) < 0.00001
 #define isOverallNTSCJColorGamut abs(FSMovieFlags.w - 1.0) < 0.00001
 
-// ---
-#define debugOutput lightingDebugData.z
-#define DEBUG_OUTPUT_DISABLED 0
-#define DEBUG_OUTPUT_COLOR 1
-#define DEBUG_OUTPUT_NORMAL 2
-#define DEBUG_OUTPUT_ROUGHNESS 3
-#define DEBUG_OUTPUT_METALLIC 4
-#define DEBUG_OUTPUT_AO 5
-#define DEBUG_OUTPUT_SPECULAR 6
-#define DEBUG_OUTPUT_IBL_SPECULAR 7
-#define DEBUG_OUTPUT_IBL_DIFFUSE 8
-
-#define isPbrTextureEnabled lightingSettings.x > 0.0
-#define isEnvironmentLightingEnabled lightingSettings.y > 0.0
-
-#define isFogEnabled WMFlags.y > 0.0
-
-#define isNmlTextureLoaded FSTexFlags.x > 0.0
-#define isPbrTextureLoaded FSTexFlags.y > 0.0
-#define isIblTextureLoaded FSTexFlags.z > 0.0
+#define isTimeEnabled TimeData.x > 0.0
+#define isTimeFilterEnabled TimeData.x > 0.0 && TimeData.y > 0.0
 
 #define gameLightingMode gameLightingFlags.x
 #define GAME_LIGHTING_PER_PIXEL 2
 
+#define isFogEnabled WMFlags.y > 0.0
+
 void main()
 {
-    vec4 color = v_color0;
-    vec4 color_nml = vec4(0.0, 0.0, 0.0, 0.0);
-    vec4 color_pbr = vec4(0.0, 0.0, 0.0, 0.0);
+    vec4 color = vec4(toLinear(v_color0.rgb), v_color0.a);
 
     if (isTexture)
     {
@@ -155,7 +139,6 @@ void main()
                     yuv.r = saturate(yuv.r - (16.0/255.0));
                     color.rgb = toRGB_bt601_tvrange(yuv);
                 }
-
             }
             else if (isBT709ColorMatrix){
                 yuv.g = yuv.g - (128.0/255.0);
@@ -167,7 +150,6 @@ void main()
                     yuv.r = saturate(yuv.r - (16.0/255.0));
                     color.rgb = toRGB_bt709_tvrange(yuv);
                 }
-
             }
             else if (isBRG24ColorMatrix){
                 color.rgb = yuv;
@@ -226,9 +208,6 @@ void main()
         else
         {
             vec4 texture_color = texture2D(tex_0, v_texcoord0.xy);
-
-            if (isNmlTextureLoaded) color_nml = texture2D(tex_5, v_texcoord0.xy);
-            if (isPbrTextureLoaded) color_pbr = texture2D(tex_6, v_texcoord0.xy);
 
             if (doAlphaTest)
             {
@@ -301,125 +280,27 @@ void main()
         }
     }
 
-    vec3 normal = vec3(0.0, 0.0, 0.0);
-    if(isTLVertex)
+    if (isTimeFilterEnabled) color.rgb *= TimeColor.rgb;
+
+    if (!(isTLVertex) && isFogEnabled) color.rgb = ApplyWorldFog(color.rgb, v_position0.xyz);
+
+    // return to gamma space so we can do alpha blending the same way FF7/8 did.
+    color.rgb = toGamma(color.rgb);
+
+    // In this default shader, lighting is applied in gamma space so that it does better match the original lighting
+    if (gameLightingMode == GAME_LIGHTING_PER_PIXEL)
     {
-        gl_FragColor = color;
-        if(isTimeFilterEnabled)
-        {
-            gl_FragColor.rgb *= TimeColor.rgb;
-        }
-    }
-    else
-    {
-        // Shadow UV
-        vec3 shadowUv = v_shadow0.xyz / v_shadow0.w;
-
-        // View Direction
-        vec3 viewDir = normalize(-v_position0.xyz);
-
-        // Normal
-        normal = normalize(v_normal0);
-        if(isNmlTextureLoaded && isPbrTextureEnabled) normal = perturb_normal(normal, v_position0.xyz, color_nml.rgb, v_texcoord0.xy );
-
-        // Roughness
-        float perceptualRoughness = materialData.x;
-        if(isPbrTextureLoaded && isPbrTextureEnabled) perceptualRoughness = color_pbr.r * materialScaleData.x;
-        float roughness = min(max(0.001, perceptualRoughness * perceptualRoughness), 1.0);
-
-        // Metallic
-        float metallic = materialData.y;
-        if(isPbrTextureLoaded && isPbrTextureEnabled) metallic = color_pbr.g * materialScaleData.y;
-        metallic = min(1.0, metallic);
-
-        // Specular (dielectric)
-        float specular = materialData.z;
-        if(isPbrTextureLoaded && isPbrTextureEnabled) specular = color_pbr.b * materialScaleData.z;
-        specular = min(1.0, specular);
-
-        // Ambient Occlusion
-        float ao = 1.0;
-        if(isPbrTextureLoaded && isPbrTextureEnabled) ao = color_pbr.a;
-
-        // Luminance
-        vec3 luminance = calcLuminance(color.rgb, v_position0.xyz, viewDir, normal, perceptualRoughness, roughness, metallic, specular, shadowUv);
-
-        // Indirect Luminance
-        vec3 indirectLuminance = vec3_splat(0.0);
-        vec3 specularIbl = vec3_splat(0.0);
-        vec3 diffuseIbl = vec3_splat(0.0);
-        if(isIblTextureLoaded && isEnvironmentLightingEnabled)
-        {
-            // Specular IBL
-            vec3 R = mul(invViewMatrix, vec4(reflect(-viewDir, normal), 0)).xyz;
-            float iblMipCount = iblData.x;
-            float iblLod = CalcMipmapFromRoughness(roughness, iblMipCount);
-            specularIbl = textureCubeLod(tex_7, R, iblLod).rgb;
-
-            // Diffuse IBL
-            vec3 worldNormal = mul(invViewMatrix, vec4(normal, 0)).xyz;
-            diffuseIbl = textureCube(tex_8, worldNormal).rgb;
-
-            indirectLuminance = CalcIblIndirectLuminance(color.rgb, specularIbl, diffuseIbl, viewDir, normal, roughness, metallic, specular, ao);
-        }
-        else
-        {
-            indirectLuminance = CalcConstIndirectLuminance(color.rgb);
-        }
-
-        if(debugOutput == DEBUG_OUTPUT_COLOR)
-        {
-            gl_FragColor = color;
-        }
-        else if(debugOutput == DEBUG_OUTPUT_NORMAL)
-        {
-            gl_FragColor = vec4(0.5 * normal + 0.5, 1.0);
-        }
-        else if(debugOutput == DEBUG_OUTPUT_ROUGHNESS)
-        {
-            gl_FragColor = vec4(vec3_splat(perceptualRoughness), 1.0);
-        }
-        else if(debugOutput == DEBUG_OUTPUT_METALLIC)
-        {
-            gl_FragColor = vec4(vec3_splat(metallic), 1.0);
-        }
-        else if(debugOutput == DEBUG_OUTPUT_AO)
-        {
-            gl_FragColor = vec4(vec3_splat(ao), 1.0);
-        }
-        else if(debugOutput == DEBUG_OUTPUT_SPECULAR)
-        {
-            gl_FragColor = vec4(vec3_splat(specular), 1.0);
-        }
-        else if(debugOutput == DEBUG_OUTPUT_IBL_SPECULAR)
-        {
-            gl_FragColor = vec4(specularIbl, 1.0);
-        }
-        else if(debugOutput == DEBUG_OUTPUT_IBL_DIFFUSE)
-        {
-            gl_FragColor = vec4(diffuseIbl, 1.0);
-        }
-        else
-        {
-            gl_FragColor = vec4(luminance + indirectLuminance, color.a);
-        }
-
-        if (isFogEnabled && debugOutput == DEBUG_OUTPUT_DISABLED ) gl_FragColor.rgb = ApplyWorldFog(gl_FragColor.rgb, v_position0.xyz);
-    }
-
-    if(!(isTLVertex) && gameLightingMode == GAME_LIGHTING_PER_PIXEL && debugOutput == DEBUG_OUTPUT_DISABLED)
-    {
+        vec3 normal = normalize(v_normal0);
         vec3 worldNormal = mul(invViewMatrix, vec4(normal, 0)).xyz;
         float dotLight1 = saturate(dot(worldNormal, gameLightDir1.xyz));
         float dotLight2 = saturate(dot(worldNormal, gameLightDir2.xyz));
         float dotLight3 = saturate(dot(worldNormal, gameLightDir3.xyz));
-        vec3 light1Ambient = toLinear(gameLightColor1.rgb) * dotLight1 * dotLight1;
-        vec3 light2Ambient = toLinear(gameLightColor2.rgb) * dotLight2 * dotLight2;
-        vec3 light3Ambient = toLinear(gameLightColor3.rgb) * dotLight3 * dotLight3;
-        vec3 lightAmbient = toLinear(gameScriptedLightColor.rgb) * (toLinear(gameGlobalLightColor.rgb) + light1Ambient + light2Ambient + light3Ambient);
-        gl_FragColor.rgb *= gameGlobalLightColor.w * lightAmbient;
+        vec3 light1Ambient = gameLightColor1.rgb * dotLight1 * dotLight1;
+        vec3 light2Ambient = gameLightColor2.rgb * dotLight2 * dotLight2;
+        vec3 light3Ambient = gameLightColor3.rgb * dotLight3 * dotLight3;
+        vec3 lightAmbient = gameScriptedLightColor.rgb * (gameGlobalLightColor.rgb + light1Ambient + light2Ambient + light3Ambient);
+        color.rgb *= gameGlobalLightColor.w * lightAmbient;
     }
-
-    // return to gamma space so we can do alpha blending the same way FF7/8 did.
-    gl_FragColor.rgb = toGamma(gl_FragColor.rgb);
+    
+    gl_FragColor = color;
 }
